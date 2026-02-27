@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora</title>
+
+<style>
+    body{
+        background:#1e1e2f;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .calculadora{
+        background:#2d2d44;
+        padding:20px;
+        border-radius:15px;
+        box-shadow:0 0 20px rgba(0,0,0,0.5);
+        width:300px;
+    }
+
+    #pantalla{
+        width:100%;
+        height:60px;
+        font-size:25px;
+        text-align:right;
+        margin-bottom:15px;
+        padding:10px;
+        border:none;
+        border-radius:10px;
+        background:#fff;
+    }
+
+    .botones{
+        display:grid;
+        grid-template-columns: repeat(4,1fr);
+        gap:10px;
+    }
+
+    button{
+        height:50px;
+        font-size:18px;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+        background:#4e4e75;
+        color:white;
+        transition:0.2s;
+    }
+
+    button:hover{
+        background:#6c6ca5;
+    }
+
+    .igual{
+        background:#ff9500;
+    }
+
+    .igual:hover{
+        background:#e08900;
+    }
+
+    .limpiar{
+        background:#e63946;
+    }
+
+    .limpiar:hover{
+        background:#c82333;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="calculadora">
+    <input type="text" id="pantalla" disabled>
+
+    <div class="botones">
+        <button onclick="limpiar()" class="limpiar">C</button>
+        <button onclick="agregar('%')">%</button>
+        <button onclick="agregar('/')">÷</button>
+        <button onclick="agregar('*')">×</button>
+
+        <button onclick="agregar('7')">7</button>
+        <button onclick="agregar('8')">8</button>
+        <button onclick="agregar('9')">9</button>
+        <button onclick="agregar('-')">−</button>
+
+        <button onclick="agregar('4')">4</button>
+        <button onclick="agregar('5')">5</button>
+        <button onclick="agregar('6')">6</button>
+        <button onclick="agregar('+')">+</button>
+
+        <button onclick="agregar('1')">1</button>
+        <button onclick="agregar('2')">2</button>
+        <button onclick="agregar('3')">3</button>
+        <button onclick="calcular()" class="igual">=</button>
+
+        <button onclick="agregar('0')" style="grid-column: span 2;">0</button>
+        <button onclick="agregar('.')">.</button>
+    </div>
+</div>
+
+<script>
+    function agregar(valor){
+        document.getElementById("pantalla").value += valor;
+    }
+
+    function limpiar(){
+        document.getElementById("pantalla").value = "";
+    }
+
+    function calcular(){
+        try{
+            let expresion = document.getElementById("pantalla").value;
+
+            // Manejo especial del porcentaje
+            if(expresion.includes('%')){
+                let partes = expresion.split('%');
+                let numero = parseFloat(partes[0]);
+                document.getElementById("pantalla").value = numero / 100;
+            }else{
+                document.getElementById("pantalla").value = eval(expresion);
+            }
+        }
+        catch{
+            document.getElementById("pantalla").value = "Error";
+        }
+    }
+</script>
+
+</body>
+</html>
