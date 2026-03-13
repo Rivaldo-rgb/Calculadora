@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Gestión de Docentes</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- MENU LATERAL -->
+
+<div class="col-2 bg-dark text-white min-vh-100 p-3">
+
+<h4><i class="bi bi-building"></i> Tabla Docentes</h4>
+<hr>
+
+<ul class="nav flex-column">
+
+<li>
+<a href="../index.html" class="nav-link text-white">
+<i class="bi bi-speedometer2"></i> Dashboard
+</a>
+</li>
+
+<li>
+<a href="../docentes/docentes.html" class="nav-link text-white">
+<i class="bi bi-geo-alt"></i> docentes
+</a>
+</li>
+
+
+</ul>
+
+</div>
+
+
+<!-- CONTENIDO -->
+
+<div class="col-10 p-4">
+
+<h2><i class="bi bi-person-fill"></i> Gestión de Docentes</h2>
+
+
+<!-- FORMULARIO -->
+
+<form id="formDocente" class="mb-4">
+
+<div class="row">
+
+<div class="col-md-3">
+<input type="number" id="docenteId" class="form-control mb-2" placeholder="ID Docente">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="tipoDocumento" class="form-control mb-2" placeholder="Tipo Documento (CC, CE...)">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="apellido" class="form-control mb-2" placeholder="Apellido">
+</div>
+
+<div class="col-md-3">
+<input type="date" id="fechaNacimiento" class="form-control mb-2">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="nivelEstudios" class="form-control mb-2" placeholder="Nivel Estudios">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="area" class="form-control mb-2" placeholder="Área">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="grado" class="form-control mb-2" placeholder="Grado">
+</div>
+
+<div class="col-md-3">
+<input type="text" id="eps" class="form-control mb-2" placeholder="EPS">
+</div>
+
+<div class="col-md-3">
+<input type="number" id="salario" class="form-control mb-2" placeholder="Salario">
+</div>
+
+<div class="col-md-12 mt-2">
+<button type="submit" class="btn btn-primary">
+<i class="bi bi-save"></i> Guardar
+</button>
+</div>
+
+</div>
+
+</form>
+
+
+<!-- TABLA -->
+
+<table class="table table-bordered">
+
+<thead class="table-light">
+
+<tr>
+
+<th>ID</th>
+<th>Tipo Documento</th>
+<th>Nombre</th>
+<th>Apellido</th>
+<th>Área</th>
+<th>Grado</th>
+<th>Salario</th>
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tablaDocentes"></tbody>
+
+</table>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- SCRIPTS -->
+
+<script src="../api.js"></script>
+<script src="docentes.js"></script>
+
+</body>
+</html>

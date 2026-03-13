@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Tabla Docentes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+       
+        <div class="col-2 bg-dark text-white min-vh-100 p-3">
+            <h4><i class="bi bi-building"></i> Tabla Docentes</h4>
+            <hr>
+            <ul class="nav flex-column">
+                <li>
+                    <a href="index.html" class="nav-link text-white">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="docentes/docentes.html" class="nav-link text-white">
+                        <i class="bi bi-person-fill"></i> Docentes
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+      
+        <div class="col-10 p-4">
+                <div class="col-md-4">
+                    <div class="card text-bg-success">
+                        <div class="card-body">
+                            <h5>
+                                <i class="bi bi-person-fill"></i> Total de Docentes
+                            </h5>
+                            <h3 id="totalDocentes">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="api.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const healthResponse = await fetch("http://localhost:5052/api/health");
+        if (!healthResponse.ok) {
+            throw new Error("Servidor no responde");
+        }
+        console.log("✓ Servidor activo");
+
+        const responseDocentes = await fetch(API.docentes);
+        if (!responseDocentes.ok) throw new Error(`HTTP ${responseDocentes.status}`);
+        const docentes = await responseDocentes.json();
+        document.getElementById("totalDocentes").innerText = docentes.length;
+        console.log("✓ Docentes cargados:", docentes.length);
+
+        const responseSedes = await fetch(API.sedes);
+        if (!responseSedes.ok) throw new Error(`HTTP ${responseSedes.status}`);
+        const sedes = await responseSedes.json();
+        document.getElementById("totalSedes").innerText = sedes.length;
+        console.log("✓ Sedes cargadas:", sedes.length);
+    } catch (error) {
+        console.error("Error:", error);
+        document.getElementById("totalSedes").innerText = "Error: " + error.message;
+    }
+});
+</script>
+
+</body>
+</html>
