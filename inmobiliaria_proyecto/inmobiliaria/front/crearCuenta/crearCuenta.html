@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria - Crear Cuenta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+        .card-register {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        .brand-header {
+            background: #0f3460;
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .brand-header .brand-icon { font-size: 2.5rem; color: #e2b04a; }
+        .section-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0f3460;
+            border-bottom: 2px solid #0f3460;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #0f3460;
+            box-shadow: 0 0 0 0.2rem rgba(15, 52, 96, 0.2);
+        }
+        .btn-registrar {
+            background: #0f3460;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+        }
+        .btn-registrar:hover { background: #16213e; }
+        #alerta { display: none; }
+        .required-mark { color: #dc3545; }
+        .password-strength { height: 4px; border-radius: 2px; transition: all 0.3s; }
+    </style>
+</head>
+<body>
+
+<div class="card-register">
+
+    <!-- Encabezado -->
+    <div class="brand-header">
+        <div class="brand-icon"><i class="bi bi-building-fill"></i></div>
+        <h3 class="text-white mt-2 mb-1 fw-bold">Inmobiliaria</h3>
+        <p class="text-white-50 mb-0">Crear Nueva Cuenta</p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="bg-white p-4">
+
+        <div id="alerta" class="alert d-flex align-items-center gap-2 mb-3">
+            <i class="bi bi-info-circle-fill"></i>
+            <span id="alertaMensaje"></span>
+        </div>
+
+        <!-- ── Datos personales ─────────────────────────────────── -->
+        <p class="section-title"><i class="bi bi-person-vcard me-1"></i>Datos Personales</p>
+        <div class="row g-3 mb-3">
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Nombre <span class="required-mark">*</span>
+                </label>
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Apellido <span class="required-mark">*</span>
+                </label>
+                <input type="text" id="apellido" class="form-control" placeholder="Apellido">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Correo Electrónico</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-envelope text-secondary"></i>
+                    </span>
+                    <input type="email" id="correo" class="form-control" placeholder="correo@ejemplo.com">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Teléfono</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-telephone text-secondary"></i>
+                    </span>
+                    <input type="text" id="telefono" class="form-control"
+                           placeholder="Número de teléfono" maxlength="10">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Domicilio</label>
+                <input type="text" id="domicilio" class="form-control" placeholder="Dirección de residencia">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Fecha de Nacimiento</label>
+                <input type="date" id="fechaNacimiento" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Tipo de Persona <span class="required-mark">*</span>
+                </label>
+                <select id="tipoPersona" class="form-select">
+                    <option value="">Cargando...</option>
+                </select>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!-- ── Datos de acceso ──────────────────────────────────── -->
+        <p class="section-title"><i class="bi bi-shield-lock me-1"></i>Datos de Acceso</p>
+        <div class="row g-3 mb-4">
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Nombre de Usuario <span class="required-mark">*</span>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-at text-secondary"></i>
+                    </span>
+                    <input type="text" id="nombreUsuario" class="form-control"
+                           placeholder="Nombre de usuario" autocomplete="username">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Perfil <span class="required-mark">*</span>
+                </label>
+                <select id="perfil" class="form-select">
+                    <option value="">Cargando...</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Contraseña <span class="required-mark">*</span>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-lock-fill text-secondary"></i>
+                    </span>
+                    <input type="password" id="clave" class="form-control"
+                           placeholder="Mínimo 6 caracteres" autocomplete="new-password"
+                           oninput="evaluarFuerza()">
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePass('clave','eyeIcon1')">
+                        <i class="bi bi-eye" id="eyeIcon1"></i>
+                    </button>
+                </div>
+                <div class="mt-1">
+                    <div id="barraFuerza" class="password-strength bg-secondary w-0"></div>
+                    <small id="textoFuerza" class="text-muted"></small>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    Confirmar Contraseña <span class="required-mark">*</span>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-lock-fill text-secondary"></i>
+                    </span>
+                    <input type="password" id="confirmarClave" class="form-control"
+                           placeholder="Repite la contraseña" autocomplete="new-password">
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePass('confirmarClave','eyeIcon2')">
+                        <i class="bi bi-eye" id="eyeIcon2"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── Botones ──────────────────────────────────────────── -->
+        <div class="d-flex gap-2">
+            <button onclick="registrar()" id="btnRegistrar"
+                    class="btn btn-registrar btn-primary flex-fill text-white fw-semibold">
+                <i class="bi bi-person-plus"></i> Crear Cuenta
+            </button>
+            <a href="../login/login.html"
+               class="btn btn-outline-secondary flex-fill fw-semibold">
+                <i class="bi bi-arrow-left"></i> Volver al Login
+            </a>
+        </div>
+
+        <p class="text-center text-muted mt-3 mb-0" style="font-size:0.82rem;">
+            <span class="required-mark">*</span> Campos obligatorios
+        </p>
+    </div>
+</div>
+
+<script src="../api.js"></script>
+<script src="crearCuenta.js"></script>
+</body>
+</html>
